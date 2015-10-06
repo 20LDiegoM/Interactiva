@@ -1,27 +1,22 @@
 angular.module('polymer.controllers', [])
 
-.controller('HomeController', ['$scope', function($scope) {
-	$scope.title = 'Hello World';
-	$scope.promotions = ¨[
-		 {name: 'coca cola', price: '$2'},
-		 {name: 'pepsi', price: '$3'},
-		 {name: 'redbull', price: '$4'}
+.controller('HomeController', ['$scope' ,function($scope){
+	
+}])
 
-	];
-	$scope.add = function() {
-		var newpromotion = angular.copy($scope.newpromotion);
-		$scope.promotions.push(newpromotion);
-	};
+.controller('ProductsController', [function(){
 
 }])
 
-.controller('ProductsController', [function() {
-	// body...
+.controller('VideosController', ['$scope', function($scope){
+	var video = document.querySelector("video");
+
+	$scope.play = function(){
+		video.play();
+	};
+
+	$scope.pause = function(){
+		video.pause();
+	};
 }]);
-
-.controller('VideosController', [function() {
-	// body...
-}]);
-
-
 
