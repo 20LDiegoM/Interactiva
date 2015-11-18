@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+  
+  <head>
+    <style>
+    body{
+    color: #424242;
+    font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+	letter-spacing:0.1em;
+	text-align:center;
+	margin: 40px auto;
+	text-transform: lowercase;
+	line-height: 145%;
+	font-size: 14pt;
+	font-variant: small-caps;
+    }
+      #gameOver{
+        font-size: 3em;
+        color: blue;
+      }
+    </style>
+    <script type="text/javascript">
+      // Global variables
+      var paddleX = 150; // Initial paddle location.
+      var paddleW = 150; // Paddle width
+      var ballX = 150; // Ball x position.
+      var ballY = 150; // Ball y position.
+      var ballDX = 2; // Change in ball x position.
+      var ballDY = 4; // Change in ball y position.
+      var boardX = 300; // Board width.
+      var boardY = 300; // Board height.
+      var paddleH = 10; // Paddle height.
+      var paddleD = boardY - paddleH; // Paddle depth.
+      var counter = 0; //Every Time the ball hits the paddle
+      // This function is called on page load.
+      function drawGameSVG() {
+        var difficult = document.getElementById("difficult");
+        var interval = 16;
+        difficult.addEventListener("click", function(){
+          paddleX = 225;
+          paddleW = 75;
+          interval = 8;
+          paddle.setAttribute("x", 225);
+          paddle.setAttribute("width", 75);
+        });
+        // Start and play the game until the ball stops.
+        start = document.getElementById("start");
+        start.addEventListener("click", function(){
+          difficult.disabled = true;
+          gameLoop = setInterval(drawBall, interval)
+        });
+       
+        // Add keyboard listener.
+        window.addEventListener('keydown', whatKey, true);
+      }
+      function drawBall() {
+        var hitCounter = document.getElementById("hitCounter");
+        var gameOver = document.getElementById("gameOver");
+        var playAgain = document.getElementById("playAgain");
+        // Change the ball location.
+        ballX += ballDX;
+        ballY += ballDY;
+        ball.setAttribute("cx", ballX);
+        ball.setAttribute("cy", ballY);
+        // Bounce on a left or right edge.
+        if (ballX + ballDX > boardX - 15 || ballX + ballDX < 15) {
+          ballDX =- ballDX;
+        }
+        // If ball hits the top, bounce it. 
+        if (ballY + ballDY < 15) {
+          ballDY =- ballDY;
+        }
+        // If the ball hits the bottom, check see if it hits a paddle.
+        else if (ballY + ballDY > boardY - 15) {
+          // If the ball hits the paddle, bounce it.
+          if (ballX > paddleX && ballX < paddleX + paddleW) {  
+            ballDY =- ballDY;
+            counter++;
+            hitCounter.innerHTML = counter;
+          }
+          // Otherwise the game is over.
+          else {
+            clearInterval(gameLoop);
+            gameOver.innerHTML = 'Game Over';
+            start.disabled = true;
+            playAgain.style.display = "block";
+            playAgain.addEventListener("click", function(){
+              location.reload();
+            });
+          }
+        }
+      }
+      // Get key press.
+      function whatKey(evt) {
+        switch (evt.keyCode) {
+          // Left arrow.
+        case 37:
+          paddleX = paddleX - 20;
+          if (paddleX < 0) paddleX = 0;
+          paddle.setAttribute("x", paddleX);
+          break;
+          // Right arrow.
+        case 39:
+          paddleX = paddleX + 20;
+          if (paddleX > boardX - paddleW) paddleX = boardX - paddleW;
+          paddle.setAttribute("x", paddleX);
+          break;
+        }
+      }
+    </script>
+  </head>
+  
+  <body onload="drawGameSVG()">
+    <h1>
+      Canvas Game
+    </h1>
+    <button id="start">Start</button>
+    <button id="difficult">Difficult</button>
+    <p>Cant: <span id="hitCounter">0</span></p>
+    <!-- Create the SVG pane. -->
+    <svg xmlns="http://www.w3.org/2000/svg" height="300" width="300">
+      <!-- Create the board. -->
+      <rect x="1" y="1" width="300" height="300" fill="black" id="bpard" />
+      <!-- Create the ball. -->
+      <circle cx="150" cy="150" r="15" fill="white" id="ball" />
+      <!-- Create the paddle. -->
+      <rect x="150" y="290" width="150" height="10" fill="white" id="paddle"
+      />
+    </svg>
+    <p id="gameOver"></p>
+    <button id="playAgain" style="display: none">Play Again</button>
+  </body>
+  
+</html>
