@@ -1,0 +1,16 @@
+<div class="row col-md-6">
+	<div class="chatroom col-md-12" ng-controller="chatController">
+		<div class="form-group">
+			<input type="text" placeholder="Username" class="form-control" ng-model="new.name">
+			<textarea type="text" placeholder="Message!" class="form-control" ng-model="new.text"></textarea>
+		</div>
+		<div class="col-md-6 chats">
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="message in messages">
+					{{message.name}}: {{message.text}}
+				</li>
+			</ul>
+		</div>
+		<div class="chatbtn col-md-2"><pwi-button ng-click="send(new)"></pwi-button></div>
+	</div>
+</div>

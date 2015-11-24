@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Examen</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="import" href="pwi-image.html">
+  <link rel="import" href="pwi-button.html">
+  <link rel="import" href="pwi-video.html">
+  <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+  <script type="text/javascript" src="bower_components/firebase/firebase.js"></script>
+  <script type="text/javascript" src="bower_components/angularfire/dist/angularfire.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="util/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="controllers.js"></script>
+  <script type="text/javascript" src="factories.js"></script>
+</head>
+
+<body ng-app="examen">
+  <div class="navegation col-md-12">
+    <div class="row col-md-6">
+      <h1>Examen 1</h1>
+    </div>
+    <div class="row col-md-offset-9 buttons">
+      <a href="#/image" class="btn img" role="button"></a>
+      <a href="#/video" class="btn video" role="button"></a>
+      <a href="#/chat" class="btn chat" role="button"></a>
+    </div>
+  </div>
+  <div class="views" ng-view>
+  </div>
+</body>
+
+</html>

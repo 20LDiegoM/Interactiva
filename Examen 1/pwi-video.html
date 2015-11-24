@@ -1,0 +1,51 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="pwi-button">
+
+<dom-module id="pwi-video">
+	<template>
+		<style>
+			#polybtn {
+				padding-left: 450px;
+			}
+
+			.vidcontainer {
+				padding-left: 25px;
+			}
+		</style>
+		<div class="form-group">
+			<input id="videoId" type="text" class="form-control" placeholder="ID del video">
+		</div>
+		<div class="row">
+			<div class="vidcontainer">
+				<div id="player"></div>
+				<pwi-button id="polybtn"></pwi-button>
+			</div>
+			
+		</div>
+	</template>
+
+	<script>
+		Polymer({
+			is: 'pwi-video',
+
+			listeners: {
+		        'polybtn.click'  : 'changeVideo',
+		    },
+		    changeVideo: function(e){
+		        player.loadVideoById($("#videoId").val());
+		    }
+		});
+		var tag = document.createElement('script');
+		 tag.src = "https://www.youtube.com/iframe_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		var player;
+		function onYouTubeIframeAPIReady() {
+		 player = new YT.Player('player', {
+		 height: '390',
+		 width: '640',
+		 videoId: 'BZ4Hcx-jdIY'
+		 });
+		 };		 
+	</script>
+</dom-module>

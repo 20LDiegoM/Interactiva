@@ -1,0 +1,24 @@
+{
+  "name": "Examen 1",
+  "description": "Primer examen del curso de PWI",
+  "main": "index.html",
+  "moduleType": [],
+  "authors": [
+    "Luis Murcia"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularfire": "~1.1.3",
+    "firebase": "~2.3.2",
+    "polymer": "Polymer/polymer#^1.1.0",
+    "angular": "angularjs#~1.4.7"
+  }
+}
