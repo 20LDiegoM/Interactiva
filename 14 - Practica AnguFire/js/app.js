@@ -1,12 +1,16 @@
 var myGeocery = angular.module('myGeocery', ['firebase']);
 myGeocery.controller('groceryListController',
-  function groceryListController($scope, $firebaseArray) {
+  function groceryListController($scope, $firebaseArray, item) {
     var fireRef = new Firebase('https://grocery-store1.firebaseio.com/items');
 
     $scope.items = $firebaseArray(fireRef);
     $scope.newItem = {
       name: '',
       quantity: 0
+    };
+
+    $scope.getItemInfo = function (itemID){
+
     };
 
     /*add Item*/

@@ -1,0 +1,22 @@
+{
+  "name": "part1",
+  "homepage": "https://github.com/20LDiegoM/interactiva",
+  "authors": [
+    "20LDiegoM <luisdiego.m20@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~1.2.3",
+    "iron-component-page": "PolymerElements/iron-component-page#1.0.0"
+  }
+}
